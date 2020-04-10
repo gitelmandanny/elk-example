@@ -40,9 +40,7 @@ services:
         source: ./logstash/pipeline
         target: /usr/share/logstash/pipeline
         read_only: true
-      - type: volume
-        source: nginx
-        target: /tmp/nginx
+      - .:/tmp/nginx
     ports:
       - "5000:5000/tcp"
       - "5000:5000/udp"
@@ -53,6 +51,7 @@ services:
       - elk
     depends_on:
       - elasticsearch
+
 
   kibana:
     build:
@@ -77,4 +76,3 @@ networks:
 
 volumes:
   elasticsearch:
-  nginx:
